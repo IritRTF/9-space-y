@@ -1,0 +1,20 @@
+.link {
+  color: var(--base-95);
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  outline: none;
+}
+
+.link:hover::before,
+.link:focus::before {
+  --gap: 6px;
+  position: absolute;
+  right: var(--gap);
+  bottom: 3px;
+  left: var(--gap);
+  content: "";
+  width: calc(100% - 2 * var(--gap));
+  height: 2px;
+  background-color: var(--base-95);
+}

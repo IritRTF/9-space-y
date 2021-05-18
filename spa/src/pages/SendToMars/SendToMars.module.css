@@ -1,0 +1,41 @@
+.content {
+  max-width: 32rem;
+}
+
+.items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.items li + li {
+  margin-top: 1rem;
+}
+
+.items a {
+  color: var(--base-95);
+  text-decoration: none;
+  outline: none;
+}
+
+.items a:hover,
+.items a:focus {
+  text-decoration: underline;
+}
+
+.form {
+  display: flex;
+  flex-flow: column nowrap;
+  min-width: 16rem;
+  border: none;
+  box-shadow: inset 0 0 0 1px var(--base-85);
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.form label {
+  display: grid;
+  grid-template-columns: minmax(5rem, 1fr) 4fr;
+  margin: 1rem;
+  grid-gap: 0.5rem;
+}

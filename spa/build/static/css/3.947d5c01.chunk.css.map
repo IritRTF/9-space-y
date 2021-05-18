@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/pages/About/About.module.css"],"names":[],"mappings":"AAAA,sBACE,eACF,CAEA,oBACE,YAAa,CACb,0CACF,CAEA,sBACE,QACF","file":"3.947d5c01.chunk.css","sourcesContent":[".content {\n  max-width: 32rem;\n}\n\n.stats {\n  display: grid;\n  grid-template-columns: minmax(5rem, 1fr) 4fr;\n}\n\n.stats p {\n  margin: 0;\n}\n"]}

@@ -1,0 +1,28 @@
+.content {
+  max-width: 32rem;
+}
+
+.links {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+}
+
+.links a {
+  color: var(--base-95);
+}
+
+.links a:not([href]) {
+  color: var(--base-60);
+}
+
+.back a {
+  color: var(--base-95);
+  text-decoration: none;
+  outline: none;
+}
+
+.back a:hover,
+.back a:focus {
+  text-decoration: underline;
+}

@@ -1,0 +1,24 @@
+.content {
+  max-width: 32rem;
+}
+
+.rockets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rockets li + li {
+  margin-top: 1rem;
+}
+
+.rockets a {
+  color: var(--base-95);
+  text-decoration: none;
+  outline: none;
+}
+
+.rockets a:hover,
+.rockets a:focus {
+  text-decoration: underline;
+}

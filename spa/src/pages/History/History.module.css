@@ -1,0 +1,24 @@
+.content {
+  max-width: 32rem;
+}
+
+.events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.events li + li {
+  margin-top: 1rem;
+}
+
+.events a {
+  color: var(--base-95);
+  text-decoration: none;
+  outline: none;
+}
+
+.events a:hover,
+.events a:focus {
+  text-decoration: underline;
+}

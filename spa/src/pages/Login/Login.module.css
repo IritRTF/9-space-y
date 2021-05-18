@@ -1,0 +1,26 @@
+.content {
+  min-width: 16rem;
+  display: grid;
+  grid-template-areas:
+    "h"
+    "f";
+}
+
+.form {
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.form input[name="username"] {
+  grid-column: 1 / span 2;
+}
+
+.form input[type="submit"] {
+  grid-column: 1 / span 2;
+}
+
+.form input[type="button"] ~ input[type="submit"] {
+  grid-column: 2 / span 1;
+}

@@ -1,0 +1,56 @@
+.content {
+  max-width: 32rem;
+}
+
+.links {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+}
+
+.links a {
+  color: var(--base-95);
+}
+
+.links a:not([href]) {
+  color: var(--base-60);
+}
+
+.wrapper {
+  margin: 1rem;
+  max-width: 32rem;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+}
+
+.images {
+  display: grid;
+  justify-content: center;
+  grid-gap: 1rem;
+}
+
+.images img {
+  max-width: calc(100vw - 2rem);
+}
+
+.stats {
+  margin: 1rem 0;
+  max-height: 40rem;
+  overflow: scroll;
+}
+
+.stats summary {
+  outline: none;
+}
+
+.back a {
+  color: var(--base-95);
+  text-decoration: none;
+  outline: none;
+}
+
+.back a:hover,
+.back a:focus {
+  text-decoration: underline;
+}

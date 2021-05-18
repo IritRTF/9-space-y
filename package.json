@@ -1,0 +1,32 @@
+{
+  "name": "space-y",
+  "scripts": {
+    "start": "better-npm-run start",
+    "debug": "better-npm-run debug"
+  },
+  "betterScripts": {
+    "debug": {
+      "command": "node --experimental-modules server.mjs",
+      "env": {
+        "DEBUG": "express:*"
+      }
+    },
+    "start": {
+      "command": "nodemon --experimental-modules server.mjs",
+      "env": {
+        "DEBUG": "express:*"
+      }
+    }
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.6"
+  },
+  "devDependencies": {
+    "better-npm-run": "0.1.1",
+    "prettier": "^2.2.1"
+  }
+}
