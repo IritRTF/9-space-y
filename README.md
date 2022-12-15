@@ -14,7 +14,7 @@
 
 - Для этого перейди в директорию задачи и выполни команду `npm install`.
 - После установки зависимостей, выполни команду `npm run start`.
-- После запуска, перейди по адресу [localhost:3000](http://localhost:3000)
+- После запуска, перейди по адресу [localhost:3000](https://localhost:3000)
 
 1. Сделай так, чтобы сервер смог отдавать статические файлы из директории `spa/build`. В express для этого есть middleware `express.static`. Подробнее можно прочитать [здесь](https://expressjs.com/en/starter/static-files.html)
 
