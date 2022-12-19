@@ -3,8 +3,12 @@ import { useMutation, useQuery, useQueryCache } from "react-query";
 import { ClientContext, onError, sentToMarsQuery } from "../../constants";
 import cs from "./SendToMars.module.css";
 
-const pick = (data, keys) =>
-  Object.fromEntries(keys.map((key) => [key, data.get(key)]));
+const pick = (data, keys) => {
+   let x = Object.fromEntries(keys.map((key) => [key, data.get(key)]));
+   let y = 1;
+   return x;
+}
+
 
 const SendToMars = () => {
   const client = useContext(ClientContext);

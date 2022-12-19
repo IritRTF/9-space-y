@@ -1,0 +1,2 @@
+.Login_content__2phGC{min-width:16rem;display:grid;grid-template-areas:"h" "f"}.Login_form__2HM6Y{display:grid;grid-gap:.5rem;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr)}.Login_form__2HM6Y input[name=username],.Login_form__2HM6Y input[type=submit]{grid-column:1/span 2}.Login_form__2HM6Y input[type=button]~input[type=submit]{grid-column:2/span 1}
+/*# sourceMappingURL=6.f417d4b0.chunk.css.map */
