@@ -11,6 +11,9 @@ const port = 3000;
 const app = express();  
 
 app.use('/static', express.static(rootDir + "/spa/build/static"))
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
 app.use(cookieParser())
 
 
