@@ -8,7 +8,14 @@ import fetch from "node-fetch";
 
 const rootDir = process.cwd();
 const port = 3000;
-const app = express();
+const app = express();  
+
+app.use('/static', express.static(rootDir + "/spa/build/static"))
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
+app.use(cookieParser())
+
 
 app.get("/client.mjs", (_, res) => {
   res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
@@ -18,10 +25,40 @@ app.get("/client.mjs", (_, res) => {
   });
 });
 
-app.get("/", (_, res) => {
-  res.send(":)");
-});
-
-app.listen(port, () => {
+https
+.createServer(
+  {
+    key: fs.readFileSync(rootDir + "/certs/server.key"),
+    cert: fs.readFileSync(rootDir + "/certs/server.cert"),
+  },
+  app
+)
+.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
+
+app.post("/api/login", (req, res) => {
+  res.cookie("username", req.body.username, {httpOnly: true, secure: true, sameSite: 'Strict'})
+  .json({username: req.cookies.username});
+})
+
+app.get("/api/getUser", (req, res) => {
+  res.json({username: req.cookies.username});
+})
+
+app.post("/api/logout", (req, res) => {
+  res.clearCookie("username");
+  res.sendStatus(200);
+})
+
+const cookieChecker = function (req, res, next) {
+  if (!req.cookies.username && req.path != "/login")
+    res.redirect("/login");
+  next()
+}
+
+app.use(cookieChecker);
+
+app.get('/*', (_, res) => {
+  res.sendFile(path.join(rootDir, "spa/build/index.html"));
+})
