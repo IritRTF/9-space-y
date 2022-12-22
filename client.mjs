@@ -1,3 +1,24 @@
+const HOST = 'https://localhost:3000';
+const SPACEX_HOST = 'https://api.spacexdata.com/v3';
+
+const API = {
+  LOGIN_URL: `${HOST}/api/login`,
+  GETUSER_URL: `${HOST}/api/getUser`,
+  LOGOUT_URL: `${HOST}/api/logout`,
+};
+
+const SPACEX_API = {
+  GET_INFO_URL: `${SPACEX_HOST}/info`,
+  GET_HISTORY_URL: `${SPACEX_HOST}/history`,
+  GET_ROCKETS_URL: `${SPACEX_HOST}/rockets`,
+  GET_ROADSTER_URL: `${SPACEX_HOST}/roadster`,
+};
+
+const LOCAL_API = {
+  GET_SENT_TO_MARS_URL: `${HOST}/getSentToMars`,
+  SEND_TO_MARS_URL: `${HOST}/sendToMars`,
+};
+
 export class Client {
   /**
    * Должен возвращать имя пользователя или null
@@ -6,7 +27,14 @@ export class Client {
    * @return {Promise<string | null>} username
    * */
   async getUser() {
-    throw new Error("Not implemented");
+    let response = await fetch(API.GETUSER_URL);
+
+    if (response.ok) {
+      response = await response.json();
+      return response.username;
+    }
+
+    return null;
   }
 
   /**
@@ -17,7 +45,22 @@ export class Client {
    * @return {Promise<string | null>} username
    * */
   async loginUser(username) {
-    throw new Error("Not implemented");
+    let response = await fetch(API.LOGIN_URL, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username }),
+    });
+
+    if (!response.ok) return null;
+
+    response = await response.json();
+    console.log(response);
+
+    username = response.username;
+
+    return username || null;
   }
 
   /**
@@ -26,7 +69,9 @@ export class Client {
    * @return {void}
    * */
   async logoutUser() {
-    throw new Error("Not implemented");
+    let response = await fetch(API.LOGOUT_URL, {
+      method: 'get',
+    });
   }
 
   /**
@@ -50,7 +95,7 @@ export class Client {
    * @return {Promise<About>}
    * */
   async getInfo() {
-    throw new Error("Not implemented");
+    return await fetch(SPACEX_API.GET_INFO_URL).then((res) => res.json());
   }
 
   /**
@@ -63,7 +108,7 @@ export class Client {
    * @return {Promise<EventBrief[]>}
    * */
   async getHistory() {
-    throw new Error("Not implemented");
+    return await fetch(SPACEX_API.GET_HISTORY_URL).then((res) => res.json());
   }
 
   /**
@@ -80,7 +125,9 @@ export class Client {
    * @return {Promise<EventFull>}
    * */
   async getHistoryEvent(id) {
-    throw new Error("Not implemented");
+    return await fetch(`${SPACEX_API.GET_HISTORY_URL}/${id}`).then((res) =>
+      res.json()
+    );
   }
 
   /**
@@ -93,7 +140,7 @@ export class Client {
    * @return {Promise<RocketBrief[]>}
    * */
   async getRockets() {
-    throw new Error("Not implemented");
+    return await fetch(SPACEX_API.GET_ROCKETS_URL).then((res) => res.json());
   }
 
   /**
@@ -118,7 +165,9 @@ export class Client {
    * @return {Promise<RocketFull>}
    * */
   async getRocket(id) {
-    throw new Error("Not implemented");
+    return await fetch(`${SPACEX_API.GET_ROCKETS_URL}/${id}`).then((res) =>
+      res.json()
+    );
   }
 
   /**
@@ -135,7 +184,7 @@ export class Client {
    * @return {Promise<Roadster>}
    * */
   async getRoadster() {
-    throw new Error("Not implemented");
+    return await fetch(SPACEX_API.GET_ROADSTER_URL).then((res) => res.json());
   }
 
   /**
@@ -152,7 +201,7 @@ export class Client {
    * @return {Promise<Item[]>}
    * */
   async getSentToMars() {
-    throw new Error("Not implemented");
+    return await fetch(LOCAL_API.GET_SENT_TO_MARS_URL);
   }
 
   /**
@@ -170,7 +219,7 @@ export class Client {
    * @return {Promise<Item[]>}
    * */
   async sendToMars(item) {
-    throw new Error("Not implemented");
+    throw new Error('not imp');
   }
 
   /**
@@ -181,6 +230,6 @@ export class Client {
    * @return {Promise<Item[]>}
    * */
   async cancelSendingToMars(item) {
-    throw new Error("Not implemented");
+    throw new Error('Not implemented');
   }
 }
