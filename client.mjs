@@ -6,7 +6,8 @@ export class Client {
    * @return {Promise<string | null>} username
    * */
   async getUser() {
-    throw new Error("Not implemented");
+    const response = await fetch("/api/user");
+    return response.text();
   }
 
   /**
@@ -17,7 +18,8 @@ export class Client {
    * @return {Promise<string | null>} username
    * */
   async loginUser(username) {
-    throw new Error("Not implemented");
+    await fetch(`/api/login?username=${username}`);
+    return new Promise((resolve) => resolve(username));
   }
 
   /**
@@ -26,7 +28,7 @@ export class Client {
    * @return {void}
    * */
   async logoutUser() {
-    throw new Error("Not implemented");
+    await fetch(`/api/logoutUser`);
   }
 
   /**
@@ -50,7 +52,8 @@ export class Client {
    * @return {Promise<About>}
    * */
   async getInfo() {
-    throw new Error("Not implemented");
+    const response = await fetch(`https://api.spacexdata.com/v3/info`)
+    return response.json()
   }
 
   /**
@@ -63,7 +66,8 @@ export class Client {
    * @return {Promise<EventBrief[]>}
    * */
   async getHistory() {
-    throw new Error("Not implemented");
+    const response = await fetch(`https://api.spacexdata.com/v3/history`)
+    return response.json()
   }
 
   /**
@@ -80,7 +84,8 @@ export class Client {
    * @return {Promise<EventFull>}
    * */
   async getHistoryEvent(id) {
-    throw new Error("Not implemented");
+    const response = await fetch(`https://api.spacexdata.com/v3/history/${id}`)
+    return response.json()
   }
 
   /**
@@ -93,7 +98,8 @@ export class Client {
    * @return {Promise<RocketBrief[]>}
    * */
   async getRockets() {
-    throw new Error("Not implemented");
+    const response = await fetch(`https://api.spacexdata.com/v3/rockets`)
+    return response.json()
   }
 
   /**
@@ -118,7 +124,8 @@ export class Client {
    * @return {Promise<RocketFull>}
    * */
   async getRocket(id) {
-    throw new Error("Not implemented");
+    const response = await fetch(`https://api.spacexdata.com/v3/rockets/${id}`)
+    return response.json()
   }
 
   /**
@@ -135,7 +142,8 @@ export class Client {
    * @return {Promise<Roadster>}
    * */
   async getRoadster() {
-    throw new Error("Not implemented");
+    const response = await fetch(`https://api.spacexdata.com/v3/roadster`)
+    return response.json()
   }
 
   /**
@@ -152,7 +160,8 @@ export class Client {
    * @return {Promise<Item[]>}
    * */
   async getSentToMars() {
-    throw new Error("Not implemented");
+    const response = await fetch(`/api/getSentToMars`)
+    return response.json()
   }
 
   /**
@@ -170,7 +179,18 @@ export class Client {
    * @return {Promise<Item[]>}
    * */
   async sendToMars(item) {
-    throw new Error("Not implemented");
+    await fetch('/api/sendToMars', {
+      method: 'POST',
+     // Заголовок запроса
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      // Данные
+      body: JSON.stringify(item)
+    });
+
+    const response = await fetch(`/api/getSentToMars`)
+    return response.json()
   }
 
   /**
@@ -181,6 +201,16 @@ export class Client {
    * @return {Promise<Item[]>}
    * */
   async cancelSendingToMars(item) {
-    throw new Error("Not implemented");
+    console.log(item)
+    await fetch('/api/cancelSendingToMars', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(item)
+    });
+
+    const response = await fetch(`/api/getSentToMars`)
+    return response.json()
   }
 }
