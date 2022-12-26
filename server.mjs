@@ -61,14 +61,14 @@ app.get('/api/logout', (req, res) => {
     res.end()
 })
 
-const myLogger = function (req, res, next) {
+const logger = function (req, res, next) {
     if (!req.cookies.username) {
         res.redirect('/login');
     }
     next()
 }
 
-app.use('/*', myLogger);
+app.use('/*', logger);
 
 app.get("/*", (_, res) => {
     res.sendFile(path.join(rootDir, "/spa/build/index.html"));
