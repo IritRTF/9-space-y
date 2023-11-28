@@ -6,7 +6,11 @@ export class Client {
    * @return {Promise<string | null>} username
    * */
   async getUser() {
-    throw new Error("Not implemented");
+    let response = await fetch('https://localhost:3000/api/getUser');
+    if (!response.ok) return null;
+    response = await response.json()
+    let username = response.username;
+    return username
   }
 
   /**
@@ -17,7 +21,17 @@ export class Client {
    * @return {Promise<string | null>} username
    * */
   async loginUser(username) {
-    throw new Error("Not implemented");
+    let response = await fetch('https://localhost:3000/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({ username })
+    });
+    if (!response.ok) return null;
+    response = await response.json();
+    username = response.username;
+    return username
   }
 
   /**
@@ -25,9 +39,7 @@ export class Client {
    *
    * @return {void}
    * */
-  async logoutUser() {
-    throw new Error("Not implemented");
-  }
+  async logoutUser() { return await fetch('/api/logout'); }
 
   /**
    * Должен возвращать информацию о компании
@@ -49,9 +61,7 @@ export class Client {
    * @property {string} summary
    * @return {Promise<About>}
    * */
-  async getInfo() {
-    throw new Error("Not implemented");
-  }
+  async getInfo() { return await fetch('https://api.spacexdata.com/v3/info').then((response) => response.json()); }
 
   /**
    * Должен возвращать информацию о всех событиях
@@ -62,9 +72,7 @@ export class Client {
    *
    * @return {Promise<EventBrief[]>}
    * */
-  async getHistory() {
-    throw new Error("Not implemented");
-  }
+  async getHistory() { return await fetch('https://api.spacexdata.com/v3/history').then((response) => response.json()); }
 
   /**
    * Должен возвращать информацию о запрошенном событии
@@ -79,9 +87,7 @@ export class Client {
    * @param {number} id
    * @return {Promise<EventFull>}
    * */
-  async getHistoryEvent(id) {
-    throw new Error("Not implemented");
-  }
+  async getHistoryEvent(id) { return await fetch(`https://api.spacexdata.com/v3/history/${id}`).then((response) => response.json()); }
 
   /**
    * Должен возвращать информацию о всех ракетах
@@ -92,9 +98,7 @@ export class Client {
    *
    * @return {Promise<RocketBrief[]>}
    * */
-  async getRockets() {
-    throw new Error("Not implemented");
-  }
+  async getRockets() { return await fetch(`https://api.spacexdata.com/v3/rockets`).then((response) => response.json()); }
 
   /**
    * Должен возвращать информацию о запрошенной ракете
@@ -117,9 +121,7 @@ export class Client {
    * @param {string} id
    * @return {Promise<RocketFull>}
    * */
-  async getRocket(id) {
-    throw new Error("Not implemented");
-  }
+  async getRocket(id) { return await fetch(`https://api.spacexdata.com/v3/rockets/${id}`).then((response) => response.json()); }
 
   /**
    * Должен возвращать информацию о машине в космосе
@@ -134,9 +136,7 @@ export class Client {
    *
    * @return {Promise<Roadster>}
    * */
-  async getRoadster() {
-    throw new Error("Not implemented");
-  }
+  async getRoadster() { return await fetch(`https://api.spacexdata.com/v3/roadster`).then((response) => response.json()); }
 
   /**
    * Должен возвращать информацию о всех посланных на Марс предметах
