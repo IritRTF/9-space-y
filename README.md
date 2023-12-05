@@ -10,21 +10,21 @@
 
 Код приложения лежит в папке `spa`, собранная версия уже лежит в папке `spa/build`. Для выполнения задания трогать код приложения не потребуется, но если захочешь что-то поменять, не забудь установить зависимости (`npm install` в папке `spa`) и собрать новую версию приложения (`npm run build`).
 
-0. Поставь зависимости и запусти сервер.
+//0. Поставь зависимости и запусти сервер.
 
 - Для этого перейди в директорию задачи и выполни команду `npm install`.
 - После установки зависимостей, выполни команду `npm run start`.
 - После запуска, перейди по адресу [localhost:3000](http://localhost:3000)
 
-1. Сделай так, чтобы сервер смог отдавать статические файлы из директории `spa/build`. В express для этого есть middleware `express.static`. Подробнее можно прочитать [здесь](https://expressjs.com/en/starter/static-files.html)
+//1. Сделай так, чтобы сервер смог отдавать статические файлы из директории `spa/build`. В express для этого есть middleware `express.static`. Подробнее можно прочитать [здесь](https://expressjs.com/en/starter/static-files.html)
 
-2. Сделай так, чтобы при заходе на любой неизвестный адрес, сервер возвращал файл `spa/build/index.html`. В этом помогут специальные символы [в путях](https://expressjs.com/en/guide/routing.html#route-paths)
+//2. Сделай так, чтобы при заходе на любой неизвестный адрес, сервер возвращал файл `spa/build/index.html`. В этом помогут специальные символы [в путях](https://expressjs.com/en/guide/routing.html#route-paths)
 
-3. Сделай так, чтобы наш сайт работал по https. В этом поможет [этот небольшой пост](https://timonweb.com/posts/running-expressjs-server-over-https/). Сертификат уже сгенерирован и лежит в папке `/certs`.
+//3. Сделай так, чтобы наш сайт работал по https. В этом поможет [этот небольшой пост](https://timonweb.com/posts/running-expressjs-server-over-https/). Сертификат уже сгенерирован и лежит в папке `/certs`.
 
 Обрати внимание, что придётся разрешить Chrome работать с само-подписанными сертификатами для localhost. Это можно сделать включив флаг `chrome://flags/#allow-insecure-localhost`.
 
-4. Изучи файл `client.mjs`. В нём лежит заготовка клиента, который будет делать запросы на сервер.
+//4. Изучи файл `client.mjs`. В нём лежит заготовка клиента, который будет делать запросы на сервер.
 
 **!!! В этом интенсиве сначала надо реализовать логинизацию. Без этого остальные странички не будут отображаться**
 
@@ -36,19 +36,19 @@
 
 Отправлять ответ можно с помощью [res.json](https://expressjs.com/en/4x/api.html#res.json).
 
-5. Сохрани имя пользователя в [cookie](https://expressjs.com/en/4x/api.html#req.cookies) (не забудь подключить `cookie-parser` [middleware](https://expressjs.com/en/resources/middleware/cookie-parser.html)).
+//5. Сохрани имя пользователя в [cookie](https://expressjs.com/en/4x/api.html#req.cookies) (не забудь подключить `cookie-parser` [middleware](https://expressjs.com/en/resources/middleware/cookie-parser.html)).
 
 Сделай так, чтобы методы `.getUser()`, `.loginUser()`, `.logoutUser()` работали с cookie
 
-6. Сделай так, чтобы cookie с именем пользователя была `HttpOnly`, `Secure`, и имела `SameSite` политику `Strict`. В этом помогут дополнительные опции [res.cookie](https://expressjs.com/en/4x/api.html#res.cookie).
+//6. Сделай так, чтобы cookie с именем пользователя была `HttpOnly`, `Secure`, и имела `SameSite` политику `Strict`. В этом помогут дополнительные опции [res.cookie](https://expressjs.com/en/4x/api.html#res.cookie).
 
-7. Сделай так, чтобы при заходе на любой роут приложения, кроме api, статики и `/login` без cookie происходил редирект на страницу `/login`.
+//7. Сделай так, чтобы при заходе на любой роут приложения, кроме api, статики и `/login` без cookie происходил редирект на страницу `/login`.
 
 Для этого придётся написать `middleware` и проверять наличие cookie в запросе. Как написать узнай [здесь](https://expressjs.com/en/guide/writing-middleware.html).
 
 Сделай так, чтобы middleware применялось только для путей, которые непосредственно отдают `index.html`
 
-8. Оживи остальные страницы кроме `/sendToMars`. А именно `About`, `History`, `Rockets`, `Roadster`.
+//8. Оживи остальные страницы кроме `/sendToMars`. А именно `About`, `History`, `Rockets`, `Roadster`.
 
 В качестве источника данных используй [публичное API](https://docs.spacexdata.com/). Методы в нём названы похожим образом.
 
@@ -58,4 +58,4 @@
 
 Формат данных, который ожидает клиент описан в файле `client.mjs` в формате [JSDoc](https://jsdoc.app/).
 
-9. \* Оживи страницу `/sendToMars`. Объект каждого предмета посылай в теле запроса в формате json. Для того, чтобы прочитать и распарсить тело запроса придётся подключить `express.json` [middleware](https://expressjs.com/en/4x/api.html#express.json). Храни данные в памяти на сервере, придумай как гарантировать уникальность полей `id` для каждого предмета.
+//9. \* Оживи страницу `/sendToMars`. Объект каждого предмета посылай в теле запроса в формате json. Для того, чтобы прочитать и распарсить тело запроса придётся подключить `express.json` [middleware](https://expressjs.com/en/4x/api.html#express.json). Храни данные в памяти на сервере, придумай как гарантировать уникальность полей `id` для каждого предмета.
