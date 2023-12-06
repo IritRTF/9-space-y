@@ -17,7 +17,26 @@ export class Client {
    * @return {Promise<string | null>} username
    * */
   async loginUser(username) {
-    throw new Error("Not implemented");
+      try {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({ username })
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.username;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error during login:', error);
+    return null;
+  }
+}
   }
 
   /**
