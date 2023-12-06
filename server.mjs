@@ -19,7 +19,7 @@ app.get("/client.mjs", (_, res) => {
 });
 
 app.get("/", (_, res) => {
-  res.send(":)");
+  res.sendFile(path.join(rootDir, 'spa', 'build', 'index.html');
 });
 
 app.listen(port, () => {
