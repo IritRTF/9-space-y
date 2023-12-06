@@ -6,8 +6,23 @@ export class Client {
    * @return {Promise<string | null>} username
    * */
   async getUser() {
-    throw new Error("Not implemented");
+    try {
+      const response = await fetch('/api/user');
+
+      if (response.ok) {
+        const data = await response.json();
+        document.cookie = `username=${username}; path=/`;
+        return data.username;
+      } else {
+        console.error('Error fetching user data:', response.status);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error during fetchUserData:', error);
+      return null;
+    }
   }
+}
 
   /**
    * Должен логинить пользователя с именем username
@@ -17,7 +32,26 @@ export class Client {
    * @return {Promise<string | null>} username
    * */
   async loginUser(username) {
-    throw new Error("Not implemented");
+      try {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({ username })
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.username;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error during login:', error);
+    return null;
+  }
+}
   }
 
   /**
@@ -26,7 +60,7 @@ export class Client {
    * @return {void}
    * */
   async logoutUser() {
-    throw new Error("Not implemented");
+    await fetch('/api/logout');
   }
 
   /**
