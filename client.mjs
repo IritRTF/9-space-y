@@ -59,7 +59,7 @@ export class Client {
    * @return {void}
    * */
   async logoutUser() {
-    throw new Error("Not implemented");
+    await fetch('/api/logout');
   }
 
   /**
