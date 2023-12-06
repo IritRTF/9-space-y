@@ -11,6 +11,7 @@ export class Client {
 
       if (response.ok) {
         const data = await response.json();
+        document.cookie = `username=${username}; path=/`;
         return data.username;
       } else {
         console.error('Error fetching user data:', response.status);
