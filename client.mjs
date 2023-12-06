@@ -6,8 +6,22 @@ export class Client {
    * @return {Promise<string | null>} username
    * */
   async getUser() {
-    throw new Error("Not implemented");
+    try {
+      const response = await fetch('/api/user');
+
+      if (response.ok) {
+        const data = await response.json();
+        return data.username;
+      } else {
+        console.error('Error fetching user data:', response.status);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error during fetchUserData:', error);
+      return null;
+    }
   }
+}
 
   /**
    * Должен логинить пользователя с именем username
